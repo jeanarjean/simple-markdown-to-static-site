@@ -4,4 +4,5 @@ export type Folder = {
   name: string;
   files: File[];
   folders: Folder[];
+  path: string;
 }

@@ -6,14 +6,34 @@ const testFolder = './';
 
 fs.promises.readdir(testFolder, { withFileTypes: true })
   .then((dirent) => {
-    var root: Folder = { name: "root", files: new Array(), folders: new Array() }
+    var root: Folder = { name: "root", files: new Array(), folders: new Array(), path: './' }
     dirent.forEach(dirent => {
       if (dirent.isDirectory()) {
-        var folder: Folder = { name: dirent.name, files: new Array(), folders: new Array() }
+        var folder: Folder = { name: dirent.name, files: new Array(), folders: new Array(), path: root.path + dirent.name }
         root.folders.push(folder);
       }
       else if (dirent.isFile()) {
-        var file: File = { name: dirent.name, content: "asd" }
+        var file: File = { name: dirent.name, content: "asd", path: root.path + dirent.name }
+        fs.open(file.path, 'r', (err, fd) => {
+          if (err) {
+            if (err.code === 'ENOENT') {
+              console.error('myfile does not exist');
+              return;
+            }
+
+            throw err;
+          }
+
+          fs.promises.readFile(file.path)
+            .then((data) => {
+              console.log(data);
+              file.content = data.toString();
+              console.log(file);
+            })
+            .catch((error) => {
+              console.log(error)
+            });
+        });
         root.files.push(file);
       }
     });
