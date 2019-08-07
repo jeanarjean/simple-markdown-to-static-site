@@ -5,14 +5,16 @@ Turn a folder and its markdown files into an easy to read static website.
 
 `To install on your machine`
 -------
-1. npm install -g simple-markdown-to-static-site
+1. npm install
+2. npm run build
+3. npm install -g
 
 `To install in development mode`
 -------
 Commands
-1. tsc
-2. npm link
-3. gen-static-site
+1. npm install
+2. npm run build
+3. npm link
 
 `To run`
 -------
