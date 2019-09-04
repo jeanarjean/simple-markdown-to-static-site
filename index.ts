@@ -14,7 +14,6 @@ var filesToIgnore = ['.gitignore'];
 
 var root: Folder = { name: "root", files: new Array(), folders: new Array(), path: './' }
 createFileForFolder(root);
-console.log("fuck");
 
 async function createFileForFolder(folder: Folder) {
   fs.promises.readdir(folder.path, { withFileTypes: true })
