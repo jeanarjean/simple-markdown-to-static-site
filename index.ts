@@ -100,11 +100,3 @@ function appendFileContent(file: File, fileName: string): Promise<any> {
     }).catch(() => { reject("fail") })
   })
 }
-
-function convertMarkdownToHtml() {
-
-}
-
-function writeToFile() {
-
-}
